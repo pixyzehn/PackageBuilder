@@ -1,4 +1,7 @@
 # PackageBuilder
+[![Swift 3.1](https://img.shields.io/badge/swift-3.1-orange.svg?style=flat)](#)
+[![SPM](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
+
 PackageBuilder builds a simple command-line application by SwiftPM. Inspired by https://github.com/JohnSundell/SwiftPlate
 
 ```console
@@ -56,4 +59,3 @@ $ packagebuilder {PROJECT_NAME}
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin new-feature`)
 5. Create a new Pull Request
-
