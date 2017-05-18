@@ -18,7 +18,8 @@ public final class PackageBuilder {
     public func run() throws {
         guard arguments.count == 2 else {
             printDescription()
-            print("Please add your command line tool name. ex. `PackageBuilder {PROJECT_NAME}`")
+            print("Examples:")
+            print("$ packagebuilder {PROJECT_NAME}")
             return
         }
 
@@ -44,10 +45,19 @@ public final class PackageBuilder {
 
         let tempFolder = try FileSystem().createFolder(at: "temp")
         print("Cloning PackageBulder by HTTPS to get files in Templates...")
-        try shellOut(to: "git clone https://github.com/pixyzehn/PackageBuilder.git temp -q")
+        let packageBuilderGithubURL = "https://github.com/pixyzehn/PackageBuilder.git"
+        try shellOut(to: "git clone \(packageBuilderGithubURL) temp -q")
 
         print("Renaming {PACKAGE_NAME} to \(projectName)...")
         try replaceAllFilesOfContentInFolder(oldName: "{PROJECT_NAME}", newName: "\(projectName)", at: "temp/Templates")
+
+        let userName = try shellOut(to: "git config user.name")
+        print("Renaming {YOUR_NAME} to \(userName)...")
+        try replaceAllFilesOfContentInFolder(oldName: "{YOUR_NAME}", newName: "\(userName)", at: "temp/Templates")
+
+        let thisYear = try shellOut(to: "date \"+%Y\"")
+        print("Renaming {THIS_YEAR} to \(thisYear)...")
+        try replaceAllFilesOfContentInFolder(oldName: "{THIS_YEAR}", newName: "\(thisYear)", at: "temp/Templates")
 
         print("Moving files in Templates to a correct position...")
         try tempFolder.subfolder(named: "Templates").file(named: "main.swift").move(to: sourcesProjectFolder)
@@ -68,18 +78,21 @@ public final class PackageBuilder {
     // MARK: Private method
 
     private func printDescription() {
-        print("Welcome to the PackageBuilder that builds a command line tool using the Swift Package Manager")
+        print("PackageBuilder")
+        print("--------------")
+        print("PackageBuilder builds a simple command-line structure by SwiftPM.")
         print(".")
         print("├── {PROJECT_NAME}.xcodeproj")
         print("├── Package.swift")
         print("├── Sources")
         print("│   ├── {PROJECT_NAME}")
-        print("│   │   └── main.swift")
+        print("│   │  └── main.swift")
         print("│   └── {PROJECT_NAME}Core")
         print("│       └── {PROJECT_NAME}.swift")
         print("└── Tests")
         print("     └── {PROJECT_NAME}Tests")
         print("         └── {PROJECT_NAME}Tests.swift")
+        print("--------------")
         print("Based on https://www.swiftbysundell.com/posts/building-a-command-line-tool-using-the-swift-package-manager")
     }
 

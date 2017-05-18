@@ -1,3 +1,9 @@
+/**
+ *  {PROJECT_NAME}
+ *  Copyright (c) {YOUR_NAME} {THIS_YEAR}
+ *  Licensed under the MIT license. See LICENSE file.
+ */
+
 import Foundation
 
 public final class {PROJECT_NAME} {
