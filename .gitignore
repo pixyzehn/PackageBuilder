@@ -1,0 +1,11 @@
+## Build generated
+build/
+DerivedData/
+*.xcodeproj/
+
+# Swift Package Manager
+#
+# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
+Packages/
+.build/
+
