@@ -15,7 +15,7 @@ PackageBuilder builds a simple command-line structure by SwiftPM.
 ├── Package.swift
 ├── Sources
 │   ├── {PROJECT_NAME}
-│   │  └── main.swift
+│   │   └── main.swift
 │   └── {PROJECT_NAME}Core
 │       └── {PROJECT_NAME}.swift
 └── Tests
