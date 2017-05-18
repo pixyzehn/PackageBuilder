@@ -16,19 +16,7 @@ public final class PackageBuilder {
     }
 
     public func run() throws {
-        print("Welcome to the PackageBuilder that builds a command line tool using the Swift Package Manager")
-        print(".")
-        print("├── {$PROJECT_NAME}.xcodeproj")
-        print("├── Package.swift")
-        print("├── Sources")
-        print("│   ├── {$PROJECT_NAME}")
-        print("│   │   └── main.swift")
-        print("│   └── {$PROJECT_NAME}Core")
-        print("│       └── {$PROJECT_NAME}.swift")
-        print("└── Tests")
-        print("     └── {$PROJECT_NAME}Tests")
-        print("         └── {$PROJECT_NAME}Tests.swift")
-        print("Based on https://www.swiftbysundell.com/posts/building-a-command-line-tool-using-the-swift-package-manager")
+        printDescription()
 
         guard arguments.count == 2 else {
             print("Please add your command line tool name. ex. `PackageBuilder {PROJECT_NAME}`")
@@ -54,7 +42,6 @@ public final class PackageBuilder {
         try folder.file(named: "Package.swift").delete()
         try sourcesFolder.file(named: "main.swift").delete()
 
-
         let tempFolder = try FileSystem().createFolder(at: "temp")
         print("Cloning PackageBulder by HTTPS to get files in Templates...")
         try shellOut(to: "git clone https://github.com/pixyzehn/PackageBuilder.git temp -q")
@@ -78,6 +65,24 @@ public final class PackageBuilder {
         try shellOut(to: "cd \(projectName) && swift package generate-xcodeproj")
     }
 
+    // MARK: Private method
+
+    private func printDescription() {
+        print("Welcome to the PackageBuilder that builds a command line tool using the Swift Package Manager")
+        print(".")
+        print("├── {$PROJECT_NAME}.xcodeproj")
+        print("├── Package.swift")
+        print("├── Sources")
+        print("│   ├── {$PROJECT_NAME}")
+        print("│   │   └── main.swift")
+        print("│   └── {$PROJECT_NAME}Core")
+        print("│       └── {$PROJECT_NAME}.swift")
+        print("└── Tests")
+        print("     └── {$PROJECT_NAME}Tests")
+        print("         └── {$PROJECT_NAME}Tests.swift")
+        print("Based on https://www.swiftbysundell.com/posts/building-a-command-line-tool-using-the-swift-package-manager")
+    }
+
     private func replaceAllFilesOfContentInFolder(oldName: String, newName: String, at folderPath: String) throws {
         let fileManager = FileManager.default
 
@@ -90,7 +95,7 @@ public final class PackageBuilder {
 
             let fileContents = try String(contentsOfFile: filePath).replacingOccurrences(of: oldName, with: newName)
             try fileContents.write(toFile: newFilePath, atomically: false, encoding: .utf8)
-            
+
             if newFilePath != filePath {
                 try fileManager.removeItem(atPath: filePath)
             }
