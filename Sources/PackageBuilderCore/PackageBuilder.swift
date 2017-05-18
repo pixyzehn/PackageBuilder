@@ -60,8 +60,10 @@ public final class PackageBuilder {
         try replaceAllFilesOfContentInFolder(oldName: "{THIS_YEAR}", newName: "\(thisYear)", at: "temp/Templates")
 
         print("Moving files in Templates to a correct position...")
-        try tempFolder.subfolder(named: "Templates").file(named: "main.swift").move(to: sourcesProjectFolder)
         try tempFolder.subfolder(named: "Templates").file(named: "Package.swift").move(to: folder)
+        try tempFolder.subfolder(named: "Templates").file(named: "LICENSE").move(to: folder)
+        try tempFolder.subfolder(named: "Templates").file(named: "README.md").move(to: folder)
+        try tempFolder.subfolder(named: "Templates").file(named: "main.swift").move(to: sourcesProjectFolder)
         try tempFolder.subfolder(named: "Templates").file(named: "\(projectName).swift").move(to: sourcesProjectCoreFolder)
         try tempFolder.subfolder(named: "Templates").file(named: "\(projectName)Tests.swift").move(to: projectTestsFolder)
 
