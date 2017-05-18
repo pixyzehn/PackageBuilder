@@ -57,7 +57,7 @@ public final class PackageBuilder {
 
         let tempFolder = try FileSystem().createFolder(at: "temp")
         print("Cloning PackageBulder by HTTPS to get files in Templates...")
-        // try shellOut(to: "git clone https://github.com/pixyzehn/PackageBuilder.git temp -q")
+        try shellOut(to: "git clone https://github.com/pixyzehn/PackageBuilder.git temp -q")
 
         print("Renaming {PACKAGE_NAME} to \(projectName)...")
         try replaceAllFilesOfContentInFolder(oldName: "{PROJECT_NAME}", newName: "\(projectName)", at: "temp/Templates")
@@ -69,7 +69,7 @@ public final class PackageBuilder {
         try tempFolder.subfolder(named: "Templates").file(named: "\(projectName)Tests.swift").move(to: projectTestsFolder)
 
         print("Deleting temp folder...")
-        // try tempFolder.delete()
+        try tempFolder.delete()
 
         print("Executing `swift build` & `swift test --parallel`")
         try shellOut(to: "cd \(projectName) && swift build && swift test --parallel")
