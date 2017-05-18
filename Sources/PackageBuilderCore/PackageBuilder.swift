@@ -16,9 +16,8 @@ public final class PackageBuilder {
     }
 
     public func run() throws {
-        printDescription()
-
         guard arguments.count == 2 else {
+            printDescription()
             print("Please add your command line tool name. ex. `PackageBuilder {PROJECT_NAME}`")
             return
         }
@@ -26,6 +25,7 @@ public final class PackageBuilder {
         let projectName = arguments[1]
 
         let folder = try FileSystem().createFolder(at: projectName)
+        print("Executing `swift package init --type executable`...")
         try shellOut(to: "swift package init --type executable", at: folder.path)
 
         let sourcesFolder = try folder.subfolder(atPath: "Sources")
