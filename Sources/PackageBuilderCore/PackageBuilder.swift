@@ -48,7 +48,7 @@ public final class PackageBuilder {
         let packageBuilderGithubURL = "https://github.com/pixyzehn/PackageBuilder.git"
         try shellOut(to: "git clone \(packageBuilderGithubURL) temp -q")
 
-        print("Renaming {PACKAGE_NAME} to \(projectName)...")
+        print("Renaming {PROJECT_NAME} to \(projectName)...")
         try replaceAllFilesOfContentInFolder(oldName: "{PROJECT_NAME}", newName: "\(projectName)", at: "temp/Templates")
 
         let userName = try shellOut(to: "git config user.name")
@@ -67,7 +67,7 @@ public final class PackageBuilder {
         try tempFolder.subfolder(named: "Templates").file(named: "\(projectName).swift").move(to: sourcesProjectCoreFolder)
         try tempFolder.subfolder(named: "Templates").file(named: "\(projectName)Tests.swift").move(to: projectTestsFolder)
 
-        print("Deleting temp folder...")
+        print("Deleting the temp folder...")
         try tempFolder.delete()
 
         print("Executing `swift build` & `swift test --parallel`")
