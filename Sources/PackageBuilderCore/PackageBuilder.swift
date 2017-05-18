@@ -70,16 +70,16 @@ public final class PackageBuilder {
     private func printDescription() {
         print("Welcome to the PackageBuilder that builds a command line tool using the Swift Package Manager")
         print(".")
-        print("├── {$PROJECT_NAME}.xcodeproj")
+        print("├── {PROJECT_NAME}.xcodeproj")
         print("├── Package.swift")
         print("├── Sources")
-        print("│   ├── {$PROJECT_NAME}")
+        print("│   ├── {PROJECT_NAME}")
         print("│   │   └── main.swift")
-        print("│   └── {$PROJECT_NAME}Core")
-        print("│       └── {$PROJECT_NAME}.swift")
+        print("│   └── {PROJECT_NAME}Core")
+        print("│       └── {PROJECT_NAME}.swift")
         print("└── Tests")
-        print("     └── {$PROJECT_NAME}Tests")
-        print("         └── {$PROJECT_NAME}Tests.swift")
+        print("     └── {PROJECT_NAME}Tests")
+        print("         └── {PROJECT_NAME}Tests.swift")
         print("Based on https://www.swiftbysundell.com/posts/building-a-command-line-tool-using-the-swift-package-manager")
     }
 
