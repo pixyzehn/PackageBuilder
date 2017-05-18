@@ -38,8 +38,9 @@ $ make
 
 ```console
 $ git clone git@github.com:pixyzehn/PackageBuilder.git
-$ swift build
-$ ./.build/debug/PackageBuilder
+$ cd PackageBuilder
+$ swift build -c release -Xswiftc -static-stdlib
+$ cp -f .build/release/PackageBuilder /usr/local/bin/PackageBuilder
 ```
 
 ## Usage
