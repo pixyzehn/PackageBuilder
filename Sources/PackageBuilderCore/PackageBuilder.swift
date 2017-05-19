@@ -41,7 +41,7 @@ public final class PackageBuilder {
             }
         }
 
-        print("Executing `swift package init --type executable`...")
+        print("Executing `swift package init --type executable` at \(folder.path)")
         try shellOut(to: "swift package init --type executable", at: folder.path)
 
         let sourcesFolder = try folder.subfolder(atPath: "Sources")
