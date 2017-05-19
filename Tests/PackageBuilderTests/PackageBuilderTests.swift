@@ -6,16 +6,54 @@
 
 import XCTest
 import PackageBuilderCore
+import Files
+import ShellOut
 
 class PackageBuilderTests: XCTestCase {
+    private var folder: Folder!
+    private let projectName = "SamplePackage"
+
     override func setUp() {
         super.setUp()
+        folder = try! Folder.home.createSubfolder(named: ".PackageBuilderTests")
+
+        // Delete the {PROJECT_NAME} directory if needed.
+        try? folder.subfolder(named: "\(projectName)").delete()
     }
 
     override func tearDown() {
+        try! folder.delete()
         super.tearDown()
     }
 
-    func testExample() {
+    func testCreatingPackage() {
+        try! PackageBuilder(arguments: ["packagebuilder", projectName, "--path", "~/.PackageBuilderTests"]).run()
+
+        let projectFolder = try! folder.subfolder(named: "\(projectName)")
+
+        // Ensure it creates needed files and folders under the {PROJECT_NAME}.
+        XCTAssertTrue(projectFolder.containsFile(named: "LICENSE"))
+        XCTAssertTrue(projectFolder.containsFile(named: "Package.swift"))
+        XCTAssertTrue(projectFolder.containsFile(named: "README.md"))
+        XCTAssertTrue(projectFolder.containsSubfolder(named: "\(projectName).xcodeproj"))
+        XCTAssertTrue(projectFolder.containsSubfolder(named: "Sources"))
+        XCTAssertTrue(projectFolder.containsSubfolder(named: "Tests"))
+
+        let sourcesFolder = try! projectFolder.subfolder(named: "Sources")
+        let projectNameFolder = try! sourcesFolder.subfolder(named: "\(projectName)")
+
+        // Ensure it creates a needed file under the {PROJECT_NAME}/Sources/{PROJECT_NAME}.
+        XCTAssertTrue(projectNameFolder.containsFile(named: "main.swift"))
+
+        let projectNameCoreFolder = try! sourcesFolder.subfolder(named: "\(projectName)Core")
+
+        // Ensure it creates a needed file under the {PROJECT_NAME}/Sources/{PROJECT_NAME}Core.
+        XCTAssertTrue(projectNameCoreFolder.containsFile(named: "\(projectName).swift"))
+
+        let testsFolder = try! projectFolder.subfolder(named: "Tests")
+        let projectTestsFolder = try! testsFolder.subfolder(named: "\(projectName)Tests")
+
+        // Ensure it creates a needed file under the {PROJECT_NAME}/Tests/{PROJECT_NAME}Tests.
+        XCTAssertTrue(projectTestsFolder.containsFile(named: "\(projectName)Tests.swift"))
     }
 }
