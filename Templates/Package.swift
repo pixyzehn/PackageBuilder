@@ -1,5 +1,5 @@
 /**
- *  {PROJECT_NAME}
+ *  {PACKAGE_NAME}
  *  Copyright (c) {YOUR_NAME} {THIS_YEAR}
  *  Licensed under the MIT license. See LICENSE file.
  */
@@ -7,12 +7,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "{PROJECT_NAME}",
+    name: "{PACKAGE_NAME}",
     targets: [
         Target(
-            name: "{PROJECT_NAME}",
-            dependencies: ["{PROJECT_NAME}Core"]
+            name: "{PACKAGE_NAME}",
+            dependencies: ["{PACKAGE_NAME}Core"]
         ),
-        Target(name: "{PROJECT_NAME}Core")
+        Target(name: "{PACKAGE_NAME}Core")
     ]
 )

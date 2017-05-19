@@ -63,8 +63,8 @@ public final class PackageBuilder {
         let packageBuilderGithubURL = "https://github.com/pixyzehn/PackageBuilder.git"
         try shellOut(to: "git clone \(packageBuilderGithubURL) \(folder.path)temp -q")
 
-        print("Renaming {PROJECT_NAME} to \(projectName)...")
-        try replaceAllFilesOfContentInFolder(oldName: "{PROJECT_NAME}", newName: "\(projectName)", at: "\(folder.path)temp/Templates")
+        print("Renaming {PACKAGE_NAME} to \(projectName)...")
+        try replaceAllFilesOfContentInFolder(oldName: "{PACKAGE_NAME}", newName: "\(projectName)", at: "\(folder.path)temp/Templates")
 
         let userName = try shellOut(to: "git config user.name")
         print("Renaming {YOUR_NAME} to \(userName)...")
@@ -100,20 +100,21 @@ public final class PackageBuilder {
         print("--------------")
         print("PackageBuilder builds a simple command-line structure by SwiftPM.")
         print(".")
-        print("├── {PROJECT_NAME}.xcodeproj")
+        print("├── {PACKAGE_NAME}.xcodeproj")
         print("├── Package.swift")
         print("├── Sources")
-        print("│   ├── {PROJECT_NAME}")
+        print("│   ├── {PACKAGE_NAME}")
         print("│   │   └── main.swift")
-        print("│   └── {PROJECT_NAME}Core")
-        print("│       └── {PROJECT_NAME}.swift")
+        print("│   └── {PACKAGE_NAME}Core")
+        print("│       └── {PACKAGE_NAME}.swift")
         print("└── Tests")
-        print("     ├── {PROJECT_NAME}Tests")
-        print("     │   └── {PROJECT_NAME}Tests.swift")
+        print("     ├── {PACKAGE_NAME}Tests")
+        print("     │   └── {PACKAGE_NAME}Tests.swift")
         print("     └── LinuxMain.swift")
         print("--------------")
         print("Examples:")
-        print("$ packagebuilder {PROJECT_NAME}")
+        print("$ packagebuilder {PACKAGE_NAME}")
+        print("$ packagebuilder {PACKAGE_NAME} --path ~/Developer")
     }
 
     private func replaceAllFilesOfContentInFolder(oldName: String, newName: String, at folderPath: String) throws {

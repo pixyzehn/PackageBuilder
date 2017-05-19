@@ -12,20 +12,20 @@ PackageBuilder
 --------------
 PackageBuilder builds a simple command-line structure by SwiftPM.
 .
-├── {PROJECT_NAME}.xcodeproj
+├── {PACKAGE_NAME}.xcodeproj
 ├── Package.swift
 ├── Sources
-│   ├── {PROJECT_NAME}
+│   ├── {PACKAGE_NAME}
 │   │   └── main.swift
-│   └── {PROJECT_NAME}Core
-│       └── {PROJECT_NAME}.swift
+│   └── {PACKAGE_NAME}Core
+│       └── {PACKAGE_NAME}.swift
 └── Tests
-     ├── {PROJECT_NAME}Tests
-     │   └── {PROJECT_NAME}Tests.swift
+     ├── {PACKAGE_NAME}Tests
+     │   └── {PACKAGE_NAME}Tests.swift
      └── LinuxMain.swift
 --------------
 Examples:
-$ packagebuilder {PROJECT_NAME}
+$ packagebuilder {PACKAGE_NAME}
 ```
 
 ## Installation
@@ -48,8 +48,8 @@ $ cp -f .build/release/PackageBuilder /usr/local/bin/PackageBuilder
 ## Usage
 
 ```console
-$ packagebuilder {PROJECT_NAME}
-$ packagebuilder {PROJECT_NAME} --path ~/Developer/project
+$ packagebuilder {PACKAGE_NAME}
+$ packagebuilder {PACKAGE_NAME} --path ~/Developer/project
 ```
 
 ## Contributing

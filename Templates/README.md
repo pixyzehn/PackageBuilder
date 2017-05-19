@@ -1,1 +1,1 @@
-# {PROJECT_NAME}
+# {PACKAGE_NAME}

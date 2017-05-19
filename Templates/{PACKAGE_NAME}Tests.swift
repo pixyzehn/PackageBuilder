@@ -1,13 +1,13 @@
 /**
- *  {PROJECT_NAME}
+ *  {PACKAGE_NAME}
  *  Copyright (c) {YOUR_NAME} {THIS_YEAR}
  *  Licensed under the MIT license. See LICENSE file.
  */
 
 import XCTest
-import {PROJECT_NAME}Core
+import {PACKAGE_NAME}Core
 
-class {PROJECT_NAME}Tests: XCTestCase {
+class {PACKAGE_NAME}Tests: XCTestCase {
     override func setUp() {
         super.setUp()
     }
@@ -20,8 +20,8 @@ class {PROJECT_NAME}Tests: XCTestCase {
     }
 }
 
-extension {PROJECT_NAME}Tests {
-    static var allTests : [(String, ({PROJECT_NAME}Tests) -> () throws -> Void)] {
+extension {PACKAGE_NAME}Tests {
+    static var allTests : [(String, ({PACKAGE_NAME}Tests) -> () throws -> Void)] {
         return [
             ("testExample", testExample),
         ]
