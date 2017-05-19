@@ -113,8 +113,8 @@ public final class PackageBuilder {
         print("     └── LinuxMain.swift")
         print("--------------")
         print("Examples:")
-        print("$ packagebuilder {PACKAGE_NAME}")
-        print("$ packagebuilder {PACKAGE_NAME} --path ~/Developer")
+        print("- packagebuilder {PACKAGE_NAME}")
+        print("- packagebuilder {PACKAGE_NAME} --path ~/Developer")
     }
 
     private func replaceAllFilesOfContentInFolder(oldName: String, newName: String, at folderPath: String) throws {

@@ -25,7 +25,8 @@ PackageBuilder builds a simple command-line structure by SwiftPM.
      └── LinuxMain.swift
 --------------
 Examples:
-$ packagebuilder {PACKAGE_NAME}
+- packagebuilder {PACKAGE_NAME}
+- packagebuilder {PACKAGE_NAME} --path ~/Developer
 ```
 
 ## Installation
