@@ -110,7 +110,6 @@ public final class PackageBuilder {
         print("    └── {PROJECT_NAME}Tests")
         print("        └── {PROJECT_NAME}Tests.swift")
         print("--------------")
-        print("Based on https://www.swiftbysundell.com/posts/building-a-command-line-tool-using-the-swift-package-manager")
         print("Examples:")
         print("$ packagebuilder {PROJECT_NAME}")
     }
