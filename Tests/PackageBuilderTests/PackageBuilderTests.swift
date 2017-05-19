@@ -12,10 +12,14 @@ import ShellOut
 class PackageBuilderTests: XCTestCase {
     private var folder: Folder!
     private let projectName = "SamplePackage"
+    private let packageBuilderTests = ".PackageBuilderTests"
 
     override func setUp() {
         super.setUp()
-        folder = try! Folder.home.createSubfolder(named: ".PackageBuilderTests")
+        // Reset the test folder just in case.
+        try? Folder.home.subfolder(named: packageBuilderTests).delete()
+
+        folder = try! Folder.home.createSubfolder(named: packageBuilderTests)
 
         // Delete the {PROJECT_NAME} directory if needed.
         try? folder.subfolder(named: "\(projectName)").delete()
@@ -27,7 +31,7 @@ class PackageBuilderTests: XCTestCase {
     }
 
     func testCreatingPackage() {
-        try! PackageBuilder(arguments: ["packagebuilder", projectName, "--path", "~/.PackageBuilderTests"]).run()
+        try! PackageBuilder(arguments: ["packagebuilder", projectName, "--path", "~/\(packageBuilderTests)"]).run()
 
         let projectFolder = try! folder.subfolder(named: "\(projectName)")
 
