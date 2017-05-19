@@ -8,5 +8,5 @@ import XCTest
 @testable import PackageBuilderTests
 
 XCTMain([
-    testCase(PackageBuilderTests.allTests),
+    testCase(PackageBuilderTests.allTests)
 ])

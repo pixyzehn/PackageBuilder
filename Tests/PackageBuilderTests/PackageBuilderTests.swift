@@ -67,9 +67,9 @@ class PackageBuilderTests: XCTestCase {
 }
 
 extension PackageBuilderTests {
-    static var allTests : [(String, (PackageBuilderTests) -> () throws -> Void)] {
+    static var allTests: [(String, (PackageBuilderTests) -> () throws -> Void)] {
         return [
-            ("testCreatingPackage", testCreatingPackage),
+            ("testCreatingPackage", testCreatingPackage)
         ]
     }
 }

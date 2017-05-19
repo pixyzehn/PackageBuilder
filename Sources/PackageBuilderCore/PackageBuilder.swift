@@ -15,6 +15,7 @@ public final class PackageBuilder {
         self.arguments = arguments
     }
 
+    // swiftlint:disable function_body_length
     public func run() throws {
         guard arguments.count > 1 else {
             printDescription()
