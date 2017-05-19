@@ -51,9 +51,21 @@ class PackageBuilderTests: XCTestCase {
         XCTAssertTrue(projectNameCoreFolder.containsFile(named: "\(projectName).swift"))
 
         let testsFolder = try! projectFolder.subfolder(named: "Tests")
+
+        // Ensure it creates a needed file under the {PROJECT_NAME}/Tests/LinuxMain.swift.
+        XCTAssertTrue(testsFolder.containsFile(named: "LinuxMain.swift"))
+
         let projectTestsFolder = try! testsFolder.subfolder(named: "\(projectName)Tests")
 
         // Ensure it creates a needed file under the {PROJECT_NAME}/Tests/{PROJECT_NAME}Tests.
         XCTAssertTrue(projectTestsFolder.containsFile(named: "\(projectName)Tests.swift"))
+    }
+}
+
+extension PackageBuilderTests {
+    static var allTests : [(String, (PackageBuilderTests) -> () throws -> Void)] {
+        return [
+            ("testCreatingPackage", testCreatingPackage),
+        ]
     }
 }

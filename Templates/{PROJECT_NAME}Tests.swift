@@ -19,3 +19,11 @@ class {PROJECT_NAME}Tests: XCTestCase {
     func testExample() {
     }
 }
+
+extension {PROJECT_NAME}Tests {
+    static var allTests : [(String, ({PROJECT_NAME}Tests) -> () throws -> Void)] {
+        return [
+            ("testExample", testExample),
+        ]
+    }
+}
