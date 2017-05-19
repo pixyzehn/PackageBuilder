@@ -20,8 +20,9 @@ PackageBuilder builds a simple command-line structure by SwiftPM.
 │   └── {PROJECT_NAME}Core
 │       └── {PROJECT_NAME}.swift
 └── Tests
-     └── {PROJECT_NAME}Tests
-         └── {PROJECT_NAME}Tests.swift
+     ├── {PROJECT_NAME}Tests
+     │   └── {PROJECT_NAME}Tests.swift
+     └── LinuxMain.swift
 --------------
 Examples:
 $ packagebuilder {PROJECT_NAME}
