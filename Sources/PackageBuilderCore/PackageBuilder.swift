@@ -22,15 +22,15 @@ public final class PackageBuilder {
             return
         }
 
-        let projectName = arguments[1]
-        var folder = try FileSystem().createFolder(at: projectName)
+        let packageName = arguments[1]
+        var folder = try FileSystem().createFolder(at: packageName)
 
         var expectingPath = false
         for argument in arguments[2..<arguments.count] {
             if expectingPath {
                 try folder.delete()
                 /// Use a given path for creating Package.
-                folder = try Folder(path: argument).createSubfolder(named: projectName)
+                folder = try Folder(path: argument).createSubfolder(named: packageName)
             }
 
             switch argument {
@@ -46,14 +46,15 @@ public final class PackageBuilder {
         try shellOut(to: "swift package init --type executable", at: folder.path)
 
         let sourcesFolder = try folder.subfolder(atPath: "Sources")
-        print("Creating Sources/\(projectName)...")
-        let sourcesProjectFolder = try sourcesFolder.createSubfolder(named: projectName)
-        print("Creating Sources/\(projectName)Core...")
-        let sourcesProjectCoreFolder = try sourcesFolder.createSubfolder(named: projectName + "Core")
+        print("Creating Sources/\(packageName)...")
+
+        let sourcesProjectFolder = try sourcesFolder.createSubfolder(named: packageName)
+        print("Creating Sources/\(packageName)Core...")
+        let sourcesProjectCoreFolder = try sourcesFolder.createSubfolder(named: packageName + "Core")
 
         let testsFolder = try folder.subfolder(atPath: "Tests")
-        print("Creating Tests/\(projectName)Tests...")
-        let projectTestsFolder = try testsFolder.createSubfolder(named: projectName + "Tests")
+        print("Creating Tests/\(packageName)Tests...")
+        let projectTestsFolder = try testsFolder.createSubfolder(named: packageName + "Tests")
 
         print("Deleting original files created by SwiftPM...")
         try folder.file(named: "Package.swift").delete()
@@ -64,8 +65,8 @@ public final class PackageBuilder {
         let packageBuilderGithubURL = "https://github.com/pixyzehn/PackageBuilder.git"
         try shellOut(to: "git clone \(packageBuilderGithubURL) \(folder.path)temp -q")
 
-        print("Renaming {PACKAGE_NAME} to \(projectName)...")
-        try replaceAllFilesOfContentInFolder(oldName: "{PACKAGE_NAME}", newName: "\(projectName)", at: "\(folder.path)temp/Templates")
+        print("Renaming {PACKAGE_NAME} to \(packageName)...")
+        try replaceAllFilesOfContentInFolder(oldName: "{PACKAGE_NAME}", newName: "\(packageName)", at: "\(folder.path)temp/Templates")
 
         let userName = try shellOut(to: "git config user.name")
         print("Renaming {YOUR_NAME} to \(userName)...")
@@ -80,9 +81,9 @@ public final class PackageBuilder {
         try tempFolder.subfolder(named: "Templates").file(named: "LICENSE").move(to: folder)
         try tempFolder.subfolder(named: "Templates").file(named: "README.md").move(to: folder)
         try tempFolder.subfolder(named: "Templates").file(named: "main.swift").move(to: sourcesProjectFolder)
-        try tempFolder.subfolder(named: "Templates").file(named: "\(projectName).swift").move(to: sourcesProjectCoreFolder)
+        try tempFolder.subfolder(named: "Templates").file(named: "\(packageName).swift").move(to: sourcesProjectCoreFolder)
         try tempFolder.subfolder(named: "Templates").file(named: "LinuxMain.swift").move(to: testsFolder)
-        try tempFolder.subfolder(named: "Templates").file(named: "\(projectName)Tests.swift").move(to: projectTestsFolder)
+        try tempFolder.subfolder(named: "Templates").file(named: "\(packageName)Tests.swift").move(to: projectTestsFolder)
 
         print("Deleting the temp folder...")
         try tempFolder.delete()
@@ -92,6 +93,8 @@ public final class PackageBuilder {
 
         print("Generating xcodeproj...")
         try shellOut(to: "swift package generate-xcodeproj", at: folder.path)
+
+        print("Enjoy \(packageName) 🎉")
     }
 
     // MARK: Private method
