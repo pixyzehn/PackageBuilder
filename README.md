@@ -34,6 +34,8 @@ Examples:
 
 ## Installation
 
+### On macOS
+
 ### Makefile
 
 ```console
@@ -46,6 +48,14 @@ $ make
 ```console
 $ git clone git@github.com:pixyzehn/PackageBuilder.git && cd PackageBuilder
 $ swift build -c release -Xswiftc -static-stdlib
+$ cp -f .build/release/PackageBuilder /usr/local/bin/PackageBuilder
+```
+
+### On Linux
+
+```console
+$ git clone git@github.com:pixyzehn/PackageBuilder.git && cd PackageBuilder
+$ swift build -c release
 $ cp -f .build/release/PackageBuilder /usr/local/bin/PackageBuilder
 ```
 
