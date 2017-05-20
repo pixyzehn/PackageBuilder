@@ -133,7 +133,7 @@ public final class PackageBuilder {
             let filePath = folderPath + "/" + fileName
             let newFilePath = folderPath + "/" + fileName.replacingOccurrences(of: oldName, with: newName)
 
-            let fileContents = try String(contentsOfFile: filePath).replacingOccurrences(of: oldName, with: newName)
+            let fileContents = try String(contentsOfFile: filePath, encoding: .utf8).replacingOccurrences(of: oldName, with: newName)
             try fileContents.write(toFile: newFilePath, atomically: false, encoding: .utf8)
 
             if newFilePath != filePath {
