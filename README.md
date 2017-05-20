@@ -34,7 +34,7 @@ Examples:
 
 ## Installation
 
-### On macOS
+On macOS
 
 ### Makefile
 
@@ -51,7 +51,7 @@ $ swift build -c release -Xswiftc -static-stdlib
 $ cp -f .build/release/PackageBuilder /usr/local/bin/PackageBuilder
 ```
 
-### On Linux
+On Linux
 
 ```console
 $ git clone git@github.com:pixyzehn/PackageBuilder.git && cd PackageBuilder
@@ -73,3 +73,7 @@ $ packagebuilder {PACKAGE_NAME} --path ~/Developer/project
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin new-feature`)
 5. Create a new Pull Request
+
+## License
+[MIT License](https://github.com/pixyzehn/PackageBuilder/blob/master/LICENSE)
+
