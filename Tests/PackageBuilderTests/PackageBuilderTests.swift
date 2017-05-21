@@ -11,7 +11,7 @@ import ShellOut
 
 class PackageBuilderTests: XCTestCase {
     private var folder: Folder!
-    private let projectName = "SamplePackage"
+    private let packageName = "SamplePackage"
     private let packageBuilderTests = ".PackageBuilderTests"
 
     override func setUp() {
@@ -22,7 +22,7 @@ class PackageBuilderTests: XCTestCase {
         folder = try! Folder.home.createSubfolder(named: packageBuilderTests)
 
         // Delete the {PACKAGE_NAME} directory if needed.
-        try? folder.subfolder(named: "\(projectName)").delete()
+        try? folder.subfolder(named: "\(packageName)").delete()
     }
 
     override func tearDown() {
@@ -31,38 +31,73 @@ class PackageBuilderTests: XCTestCase {
     }
 
     func testCreatingPackage() {
-        try! PackageBuilder(arguments: ["packagebuilder", projectName, "--path", "~/\(packageBuilderTests)"]).run()
+        try! PackageBuilder(arguments: ["packagebuilder", packageName, "--path", "~/\(packageBuilderTests)"]).run()
 
-        let projectFolder = try! folder.subfolder(named: "\(projectName)")
+        let projectFolder = try! folder.subfolder(named: "\(packageName)")
 
-        // Ensure it creates needed files and folders under the {PACKAGE_NAME}.
+        // Ensure it creates needed files and folders under the {PACKAGE_NAME}/.
         XCTAssertTrue(projectFolder.containsFile(named: "LICENSE"))
         XCTAssertTrue(projectFolder.containsFile(named: "Package.swift"))
         XCTAssertTrue(projectFolder.containsFile(named: "README.md"))
-        XCTAssertTrue(projectFolder.containsSubfolder(named: "\(projectName).xcodeproj"))
+        XCTAssertTrue(projectFolder.containsSubfolder(named: "\(packageName).xcodeproj"))
         XCTAssertTrue(projectFolder.containsSubfolder(named: "Sources"))
         XCTAssertTrue(projectFolder.containsSubfolder(named: "Tests"))
 
-        let sourcesFolder = try! projectFolder.subfolder(named: "Sources")
-        let projectNameFolder = try! sourcesFolder.subfolder(named: "\(projectName)")
+        // Ensure all `{}` are replaced for sure under the {PACKAGE_NAME}/.
+        for file in projectFolder.files {
+            checkIfAllTempNamesReplaced(file: file)
+        }
 
-        // Ensure it creates a needed file under the {PACKAGE_NAME}/Sources/{PACKAGE_NAME}.
+        let sourcesFolder = try! projectFolder.subfolder(named: "Sources")
+
+        let projectNameFolder = try! sourcesFolder.subfolder(named: "\(packageName)")
+
+        // Ensure it creates a needed file under the {PACKAGE_NAME}/Sources/{PACKAGE_NAME}/.
         XCTAssertTrue(projectNameFolder.containsFile(named: "main.swift"))
 
-        let projectNameCoreFolder = try! sourcesFolder.subfolder(named: "\(projectName)Core")
+        // Ensure all `{}` are replaced for sure under the {PACKAGE_NAME}/Sources/{PACKAGE_NAME}/.
+        if let file = projectNameFolder.files.first {
+            checkIfAllTempNamesReplaced(file: file)
+        }
 
-        // Ensure it creates a needed file under the {PACKAGE_NAME}/Sources/{PACKAGE_NAME}Core.
-        XCTAssertTrue(projectNameCoreFolder.containsFile(named: "\(projectName).swift"))
+        let projectNameCoreFolder = try! sourcesFolder.subfolder(named: "\(packageName)Core")
+
+        // Ensure it creates a needed file under the {PACKAGE_NAME}/Sources/{PACKAGE_NAME}Core/.
+        XCTAssertTrue(projectNameCoreFolder.containsFile(named: "\(packageName).swift"))
+
+        // Ensure all `{}` are replaced for sure under the {PACKAGE_NAME}/Sources/{PACKAGE_NAME}Core/.
+        if let file = projectNameCoreFolder.files.first {
+            checkIfAllTempNamesReplaced(file: file)
+        }
 
         let testsFolder = try! projectFolder.subfolder(named: "Tests")
 
-        // Ensure it creates a needed file under the {PACKAGE_NAME}/Tests/LinuxMain.swift.
+        // Ensure it creates a needed file under the {PACKAGE_NAME}/Tests/.
         XCTAssertTrue(testsFolder.containsFile(named: "LinuxMain.swift"))
 
-        let projectTestsFolder = try! testsFolder.subfolder(named: "\(projectName)Tests")
+        // Ensure all `{}` are replaced for sure under the {PACKAGE_NAME}/Tests/.
+        if let file = testsFolder.files.first {
+            checkIfAllTempNamesReplaced(file: file)
+        }
 
-        // Ensure it creates a needed file under the {PACKAGE_NAME}/Tests/{PACKAGE_NAME}Tests.
-        XCTAssertTrue(projectTestsFolder.containsFile(named: "\(projectName)Tests.swift"))
+        let projectTestsFolder = try! testsFolder.subfolder(named: "\(packageName)Tests")
+
+        // Ensure it creates a needed file under the {PACKAGE_NAME}/Tests/{PACKAGE_NAME}Tests/.
+        XCTAssertTrue(projectTestsFolder.containsFile(named: "\(packageName)Tests.swift"))
+
+        // Ensure all `{}` are replaced for sure under the {PACKAGE_NAME}/Tests/{PACKAGE_NAME}Tests/.
+        if let file = projectTestsFolder.files.first {
+            checkIfAllTempNamesReplaced(file: file)
+        }
+    }
+
+    // MARK: - Utilities
+
+    private func checkIfAllTempNamesReplaced(file: File) {
+        let contents = try! file.readAsString(encoding: .utf8)
+        XCTAssertFalse(contents.contains("{PACKAGE_NAME}"))
+        XCTAssertFalse(contents.contains("{YOUR_NAME}"))
+        XCTAssertFalse(contents.contains("{THIS_YEAR}"))
     }
 }
 
