@@ -32,6 +32,13 @@ Examples:
 - packagebuilder {PACKAGE_NAME} --path ~/Developer
 ```
 
+## Requirements
+
+PackageBuilder requires / supports the following environments:
+
+- Swift 3.1 or later
+- Git
+
 ## Installation
 
 On macOS
