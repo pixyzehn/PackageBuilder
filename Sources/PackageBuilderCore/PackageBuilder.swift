@@ -108,6 +108,7 @@ public final class PackageBuilder {
         print("├── LICENSE")
         print("├── Package.swift")
         print("├── README.md")
+        print("├── Makefile")
         print("├── {PACKAGE_NAME}.xcodeproj")
         print("├── Sources")
         print("│   ├── {PACKAGE_NAME}")

@@ -16,6 +16,7 @@ PackageBuilder builds a simple command-line structure by SwiftPM.
 ├── LICENSE
 ├── Package.swift
 ├── README.md
+├── Makefile
 ├── {PACKAGE_NAME}.xcodeproj
 ├── Sources
 │   ├── {PACKAGE_NAME}
@@ -83,4 +84,3 @@ $ packagebuilder {PACKAGE_NAME} --path ~/Developer/project
 
 ## License
 [MIT License](https://github.com/pixyzehn/PackageBuilder/blob/master/LICENSE)
-
