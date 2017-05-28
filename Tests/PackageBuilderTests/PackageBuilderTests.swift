@@ -39,6 +39,7 @@ class PackageBuilderTests: XCTestCase {
         XCTAssertTrue(projectFolder.containsFile(named: "LICENSE"))
         XCTAssertTrue(projectFolder.containsFile(named: "Package.swift"))
         XCTAssertTrue(projectFolder.containsFile(named: "README.md"))
+        XCTAssertTrue(projectFolder.containsFile(named: "Makefile"))
         XCTAssertTrue(projectFolder.containsSubfolder(named: "\(packageName).xcodeproj"))
         XCTAssertTrue(projectFolder.containsSubfolder(named: "Sources"))
         XCTAssertTrue(projectFolder.containsSubfolder(named: "Tests"))

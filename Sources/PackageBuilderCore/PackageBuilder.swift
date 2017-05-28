@@ -80,6 +80,7 @@ public final class PackageBuilder {
         try tempFolder.subfolder(named: "Templates").file(named: "Package.swift").move(to: folder)
         try tempFolder.subfolder(named: "Templates").file(named: "LICENSE").move(to: folder)
         try tempFolder.subfolder(named: "Templates").file(named: "README.md").move(to: folder)
+        try tempFolder.subfolder(named: "Templates").file(named: "Makefile").move(to: folder)
         try tempFolder.subfolder(named: "Templates").file(named: "main.swift").move(to: sourcesProjectFolder)
         try tempFolder.subfolder(named: "Templates").file(named: "\(packageName).swift").move(to: sourcesProjectCoreFolder)
         try tempFolder.subfolder(named: "Templates").file(named: "LinuxMain.swift").move(to: testsFolder)
