@@ -57,8 +57,12 @@ public final class PackageBuilder {
         let projectTestsFolder = try testsFolder.createSubfolder(named: packageName + "Tests")
 
         print("Deleting original files created by SwiftPM...")
-        try folder.file(named: "Package.swift").delete()
-        try folder.file(named: "README.md").delete()
+        if folder.containsFile(named: "Package.swift") {
+            try folder.file(named: "Package.swift").delete()
+        }
+        if folder.containsFile(named: "README.md") {
+            try folder.file(named: "README.md").delete()
+        }
 
         let tempFolder = try folder.createSubfolder(named: "temp")
         print("Cloning PackageBulder by HTTPS to get files in Templates...")
