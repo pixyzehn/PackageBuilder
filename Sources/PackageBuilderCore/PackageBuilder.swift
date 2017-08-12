@@ -42,12 +42,12 @@ public final class PackageBuilder {
             }
         }
 
-        print("Executing `swift package init --type executable` at \(folder.path)")
-        try shellOut(to: "swift package init --type executable", at: folder.path)
+        print("Executing `swift package init --type empty` at \(folder.path)")
+        try shellOut(to: "swift package init --type empty", at: folder.path)
 
         let sourcesFolder = try folder.subfolder(atPath: "Sources")
-        print("Creating Sources/\(packageName)...")
 
+        print("Creating Sources/\(packageName)...")
         let sourcesProjectFolder = try sourcesFolder.createSubfolder(named: packageName)
         print("Creating Sources/\(packageName)Core...")
         let sourcesProjectCoreFolder = try sourcesFolder.createSubfolder(named: packageName + "Core")
@@ -58,7 +58,7 @@ public final class PackageBuilder {
 
         print("Deleting original files created by SwiftPM...")
         try folder.file(named: "Package.swift").delete()
-        try sourcesFolder.file(named: "main.swift").delete()
+        try folder.file(named: "README.md").delete()
 
         let tempFolder = try folder.createSubfolder(named: "temp")
         print("Cloning PackageBulder by HTTPS to get files in Templates...")
