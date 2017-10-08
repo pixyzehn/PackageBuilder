@@ -1,22 +1,22 @@
-/**
- *  PackageBuilder
- *  Copyright (c) Hiroki Nagasawa 2017
- *  Licensed under the MIT license. See LICENSE file.
- */
+// swift-tools-version:4.0
 
 import PackageDescription
 
 let package = Package(
     name: "PackageBuilder",
-    targets: [
-        Target(
-            name: "PackageBuilder",
-            dependencies: ["PackageBuilderCore"]
-        ),
-        Target(name: "PackageBuilderCore")
-    ],
     dependencies: [
-        .Package(url: "https://github.com/JohnSundell/Files.git", majorVersion: 1),
-        .Package(url: "https://github.com/JohnSundell/ShellOut.git", majorVersion: 1),
+        .package(url: "https://github.com/pixyzehn/Files.git", from: "1.13.0"),
+        .package(url: "https://github.com/pixyzehn/ShellOut.git", from: "1.3.0")
+    ],
+    targets: [
+        .target(
+            name: "PackageBuilder",
+            dependencies: ["PackageBuilderCore"]),
+        .target(
+            name: "PackageBuilderCore",
+            dependencies: ["Files", "ShellOut"]),
+        .testTarget(
+            name: "PackageBuilderTests",
+            dependencies: ["PackageBuilderCore"])
     ]
 )

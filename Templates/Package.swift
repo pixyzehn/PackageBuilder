@@ -1,18 +1,19 @@
-/**
- *  {PACKAGE_NAME}
- *  Copyright (c) {YOUR_NAME} {THIS_YEAR}
- *  Licensed under the MIT license. See LICENSE file.
- */
+// swift-tools-version:4.0
 
 import PackageDescription
 
 let package = Package(
     name: "{PACKAGE_NAME}",
+    dependencies: [],
     targets: [
-        Target(
+        .target(
             name: "{PACKAGE_NAME}",
-            dependencies: ["{PACKAGE_NAME}Core"]
-        ),
-        Target(name: "{PACKAGE_NAME}Core")
+            dependencies: ["{PACKAGE_NAME}Core"]),
+        .target(
+            name: "{PACKAGE_NAME}Core",
+            dependencies: []),
+        .testTarget(
+            name: "{PACKAGE_NAME}Tests",
+            dependencies: ["{PACKAGE_NAME}Core"])
     ]
 )
