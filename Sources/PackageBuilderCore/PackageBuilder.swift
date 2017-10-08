@@ -93,8 +93,8 @@ public final class PackageBuilder {
         print("Deleting the temp folder...")
         try tempFolder.delete()
 
-        print("Executing `swift build` & `swift test --parallel`")
-        try shellOut(to: "swift build && swift test --parallel", at: folder.path)
+        print("Executing `swift build`")
+        try shellOut(to: "swift build", at: folder.path)
 
         print("Generating xcodeproj...")
         try shellOut(to: "swift package generate-xcodeproj", at: folder.path)
