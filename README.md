@@ -37,7 +37,7 @@ Examples:
 
 PackageBuilder requires / supports the following environments:
 
-- Swift 3.1 or later
+- Swift 4.0
 - Git
 
 ## Installation
