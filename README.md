@@ -1,5 +1,4 @@
 # PackageBuilder
-[![Swift 3.1](https://img.shields.io/badge/swift-3.1-orange.svg?style=flat)](#)
 [![SPM](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
 
 PackageBuilder builds a simple command-line structure by SwiftPM. Inspired by [JohnSundell/SwiftPlate](https://github.com/JohnSundell/SwiftPlate).  
