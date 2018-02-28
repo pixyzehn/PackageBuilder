@@ -58,6 +58,11 @@ $ swift build -c release -Xswiftc -static-stdlib
 $ cp -f .build/release/PackageBuilder /usr/local/bin/PackageBuilder
 ```
 
+### [Mint](https://github.com/yonaskolb/mint)
+```console
+$ mint run pixyzehn/PackageBuilder
+```
+
 On Linux
 
 ```console
