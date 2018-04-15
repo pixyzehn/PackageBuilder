@@ -12,11 +12,11 @@
       },
       {
         "package": "ShellOut",
-        "repositoryURL": "https://github.com/pixyzehn/ShellOut.git",
+        "repositoryURL": "https://github.com/JohnSundell/ShellOut.git",
         "state": {
-          "branch": null,
-          "revision": "8868cfd20d4b0e7d386d277e48d638988e7288de",
-          "version": "1.4.0"
+          "branch": "master",
+          "revision": "95a473b21433773e9c33a77296456a6d1cd033fe",
+          "version": null
         }
       }
     ]
