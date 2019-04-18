@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "PackageBuilder",
     dependencies: [
-        .package(url: "https://github.com/JohnSundell/Files.git", from: "2.2.1"),
+        .package(url: "https://github.com/JohnSundell/Files.git", from: "3.1.0"),
         .package(url: "https://github.com/JohnSundell/ShellOut.git", .branch("master"))
     ],
     targets: [
