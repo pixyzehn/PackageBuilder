@@ -54,7 +54,7 @@ $ make
 
 ```console
 $ git clone git@github.com:pixyzehn/PackageBuilder.git && cd PackageBuilder
-$ swift build -c release -Xswiftc -static-stdlib
+$ swift build -c release
 $ cp -f .build/release/PackageBuilder /usr/local/bin/PackageBuilder
 ```
 
