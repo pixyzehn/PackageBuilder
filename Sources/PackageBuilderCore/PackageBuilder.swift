@@ -23,7 +23,7 @@ public final class PackageBuilder {
         }
 
         let packageName = arguments[1]
-        var folder = try FileSystem().createFolder(at: packageName)
+        var folder = try Folder.home.createSubfolder(named: packageName)
 
         var expectingPath = false
         for argument in arguments[2..<arguments.count] {
@@ -45,14 +45,14 @@ public final class PackageBuilder {
         print("Executing `swift package init --type empty` at \(folder.path)")
         try shellOut(to: "swift package init --type empty", at: folder.path)
 
-        let sourcesFolder = try folder.subfolder(atPath: "Sources")
+        let sourcesFolder = try folder.subfolder(at: "Sources")
 
         print("Creating Sources/\(packageName)...")
         let sourcesProjectFolder = try sourcesFolder.createSubfolder(named: packageName)
         print("Creating Sources/\(packageName)Core...")
         let sourcesProjectCoreFolder = try sourcesFolder.createSubfolder(named: packageName + "Core")
 
-        let testsFolder = try folder.subfolder(atPath: "Tests")
+        let testsFolder = try folder.subfolder(at: "Tests")
         print("Creating Tests/\(packageName)Tests...")
         let projectTestsFolder = try testsFolder.createSubfolder(named: packageName + "Tests")
 
