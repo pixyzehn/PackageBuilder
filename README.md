@@ -1,6 +1,6 @@
 # PackageBuilder
 [![SPM](https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=for-the-badge)](https://github.com/apple/swift-package-manager)
-[![Build Status](https://img.shields.io/travis/pixyzehn/PackageBuilder/master?style=for-the-badge)](https://travis-ci.org/pixyzehn/PackageBuilder)
+[![Build Status](https://img.shields.io/travis/pixyzehn/PackageBuilder/master?style=for-the-badge)](https://travis-ci.com/pixyzehn/PackageBuilder)
 
 PackageBuilder builds a simple command-line structure by SwiftPM. Inspired by [JohnSundell/SwiftPlate](https://github.com/JohnSundell/SwiftPlate).  
 PackageBuilder originally created by using PackageBuilder.  
