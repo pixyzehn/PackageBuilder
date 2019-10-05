@@ -95,7 +95,7 @@ class PackageBuilderTests: XCTestCase {
     // MARK: - Utilities
 
     private func checkIfAllTempNamesReplaced(file: File) throws {
-        let contents = try file.readAsString(encoding: .utf8)
+        let contents = try file.readAsString(encodedAs: .utf8)
         XCTAssertFalse(contents.contains("{PACKAGE_NAME}"))
         XCTAssertFalse(contents.contains("{YOUR_NAME}"))
         XCTAssertFalse(contents.contains("{THIS_YEAR}"))
