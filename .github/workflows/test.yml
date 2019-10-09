@@ -12,4 +12,4 @@ jobs:
     - name: swift test
       run: |
         eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
-        swift test
+        sudo swift test
