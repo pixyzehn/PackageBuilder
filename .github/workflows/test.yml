@@ -11,5 +11,5 @@ jobs:
     - uses: actions/checkout@v1
     - name: swift test
       run: |
-        eval "$(curl -sL https://swiftenv.fuller.li/install.sh)" \
+        eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
         swift test
