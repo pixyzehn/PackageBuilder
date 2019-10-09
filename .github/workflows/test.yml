@@ -10,6 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: swift test
+      env:
+         SWIFT_VERSION: 5.1
       run: |
         eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
-        sudo swift test
+        swift test
