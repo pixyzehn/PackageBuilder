@@ -101,7 +101,6 @@ public final class PackageBuilder {
         print("--------------")
         print("PackageBuilder builds a simple command-line structure by SwiftPM.")
         print(".")
-        print("├── LICENSE")
         print("├── Package.swift")
         print("├── README.md")
         print("├── Makefile")
