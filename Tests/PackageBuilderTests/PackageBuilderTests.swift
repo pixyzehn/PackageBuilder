@@ -73,7 +73,7 @@ class PackageBuilderTests: XCTestCase {
         let testsFolder = try projectFolder.subfolder(named: "Tests")
 
         // Ensure it creates a needed file under the {PACKAGE_NAME}/Tests/.
-        XCTAssertTrue(testsFolder.containsFile(named: "LinuxMain.swift"))
+        XCTAssertTrue(testsFolder.containsFile(named: "XCTestManifests.swift"))
 
         // Ensure all `{}` are replaced for sure under the {PACKAGE_NAME}/Tests/.
         if let file = testsFolder.files.first {
