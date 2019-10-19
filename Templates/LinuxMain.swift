@@ -1,5 +1,4 @@
 import XCTest
-
 import {PACKAGE_NAME}Tests
 
 var tests = [XCTestCaseEntry]()
