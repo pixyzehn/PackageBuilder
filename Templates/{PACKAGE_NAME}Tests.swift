@@ -1,35 +1,48 @@
 import XCTest
+import class Foundation.Bundle
 import {PACKAGE_NAME}Core
 
-class {PACKAGE_NAME}Tests: XCTestCase {
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func testExample() {
+final class {PACKAGE_NAME}Tests: XCTestCase {
+    func testExample() throws {
         // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+        // Use XCTAssert and related functions to verify your tests produce the correct
+        // results.
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        // Some of the APIs that we use below are available in macOS 10.13 and above.
+        guard #available(macOS 10.13, *) else {
+            return
         }
-    }
-}
 
-extension {PACKAGE_NAME}Tests {
-    static var allTests: [(String, ({PACKAGE_NAME}Tests) -> () throws -> Void)] {
-        return [
-            ("testExample", testExample),
-            ("testPerformanceExample", testPerformanceExample)
-        ]
+        let fooBinary = productsDirectory.appendingPathComponent("{PACKAGE_NAME}")
+
+        let process = Process()
+        process.executableURL = fooBinary
+
+        let pipe = Pipe()
+        process.standardOutput = pipe
+
+        try process.run()
+        process.waitUntilExit()
+
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        let output = String(data: data, encoding: .utf8)
+
+        XCTAssertEqual(output, "Hello, world!\n")
     }
+
+    /// Returns path to the built products directory.
+    var productsDirectory: URL {
+      #if os(macOS)
+        for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
+            return bundle.bundleURL.deletingLastPathComponent()
+        }
+        fatalError("couldn't find the products directory")
+      #else
+        return Bundle.main.bundleURL
+      #endif
+    }
+
+    static var allTests = [
+        ("testExample", testExample),
+    ]
 }
