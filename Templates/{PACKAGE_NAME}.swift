@@ -8,6 +8,6 @@ public final class {PACKAGE_NAME} {
     }
 
     public func run() throws {
-        print("Hello world")
+        print("Hello, world!")
     }
 }
