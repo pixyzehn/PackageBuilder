@@ -23,7 +23,7 @@ public final class PackageBuilder {
         }
 
         let packageName = arguments[1]
-        var folder = try Folder.home.createSubfolder(named: packageName)
+        var folder = try Folder.current.createSubfolder(named: packageName)
 
         var expectingPath = false
         for argument in arguments[2..<arguments.count] {
