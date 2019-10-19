@@ -1,6 +1,6 @@
 import XCTest
 
-import ImageAssetsLintTests
+import {PACKAGE_NAME}Tests
 
 var tests = [XCTestCaseEntry]()
 tests += {PACKAGE_NAME}Tests.allTests()
