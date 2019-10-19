@@ -36,7 +36,6 @@ class PackageBuilderTests: XCTestCase {
         let projectFolder = try folder.subfolder(named: "\(packageName)")
 
         // Ensure it creates needed files and folders under the {PACKAGE_NAME}/.
-        XCTAssertTrue(projectFolder.containsFile(named: "LICENSE"))
         XCTAssertTrue(projectFolder.containsFile(named: "Package.swift"))
         XCTAssertTrue(projectFolder.containsFile(named: "README.md"))
         XCTAssertTrue(projectFolder.containsFile(named: "Makefile"))
