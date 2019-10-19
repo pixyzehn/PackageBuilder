@@ -13,7 +13,6 @@ PackageBuilder
 --------------
 PackageBuilder builds a simple command-line structure by SwiftPM.
 .
-├── LICENSE
 ├── Package.swift
 ├── README.md
 ├── Makefile

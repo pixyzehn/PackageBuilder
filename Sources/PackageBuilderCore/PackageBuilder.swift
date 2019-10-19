@@ -82,7 +82,6 @@ public final class PackageBuilder {
 
         print("Moving files in Templates to a correct position...")
         try tempFolder.subfolder(named: "Templates").file(named: "Package.swift").move(to: folder)
-        try tempFolder.subfolder(named: "Templates").file(named: "LICENSE").move(to: folder)
         try tempFolder.subfolder(named: "Templates").file(named: "README.md").move(to: folder)
         try tempFolder.subfolder(named: "Templates").file(named: "Makefile").move(to: folder)
         try tempFolder.subfolder(named: "Templates").file(named: "main.swift").move(to: sourcesProjectFolder)
