@@ -72,14 +72,6 @@ public final class PackageBuilder {
         print("Renaming {PACKAGE_NAME} to \(packageName)...")
         try replaceAllFilesOfContentInFolder(oldName: "{PACKAGE_NAME}", newName: "\(packageName)", at: "\(folder.path)temp/Templates")
 
-        let userName = try shellOut(to: "git config user.name")
-        print("Renaming {YOUR_NAME} to \(userName)...")
-        try replaceAllFilesOfContentInFolder(oldName: "{YOUR_NAME}", newName: "\(userName)", at: "\(folder.path)temp/Templates")
-
-        let thisYear = try shellOut(to: "date \"+%Y\"")
-        print("Renaming {THIS_YEAR} to \(thisYear)...")
-        try replaceAllFilesOfContentInFolder(oldName: "{THIS_YEAR}", newName: "\(thisYear)", at: "\(folder.path)temp/Templates")
-
         print("Moving files in Templates to a correct position...")
         try tempFolder.subfolder(named: "Templates").file(named: "Package.swift").move(to: folder)
         try tempFolder.subfolder(named: "Templates").file(named: "README.md").move(to: folder)
