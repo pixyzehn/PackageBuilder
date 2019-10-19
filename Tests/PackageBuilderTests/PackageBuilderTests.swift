@@ -73,7 +73,7 @@ class PackageBuilderTests: XCTestCase {
         let testsFolder = try projectFolder.subfolder(named: "Tests")
 
         // Ensure it creates a needed file under the {PACKAGE_NAME}/Tests/.
-        XCTAssertTrue(testsFolder.containsFile(named: "XCTestManifests.swift"))
+        XCTAssertTrue(testsFolder.containsFile(named: "LinuxMain.swift"))
 
         // Ensure all `{}` are replaced for sure under the {PACKAGE_NAME}/Tests/.
         if let file = testsFolder.files.first {
@@ -84,9 +84,10 @@ class PackageBuilderTests: XCTestCase {
 
         // Ensure it creates a needed file under the {PACKAGE_NAME}/Tests/{PACKAGE_NAME}Tests/.
         XCTAssertTrue(projectTestsFolder.containsFile(named: "\(packageName)Tests.swift"))
+        XCTAssertTrue(projectTestsFolder.containsFile(named: "XCTestManifests.swift"))
 
         // Ensure all `{}` are replaced for sure under the {PACKAGE_NAME}/Tests/{PACKAGE_NAME}Tests/.
-        if let file = projectTestsFolder.files.first {
+        for file in projectTestsFolder.files {
             try checkIfAllTempNamesReplaced(file: file)
         }
     }

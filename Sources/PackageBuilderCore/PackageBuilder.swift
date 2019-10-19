@@ -88,6 +88,7 @@ public final class PackageBuilder {
         try tempFolder.subfolder(named: "Templates").file(named: "\(packageName).swift").move(to: sourcesProjectCoreFolder)
         try tempFolder.subfolder(named: "Templates").file(named: "LinuxMain.swift").move(to: testsFolder)
         try tempFolder.subfolder(named: "Templates").file(named: "\(packageName)Tests.swift").move(to: projectTestsFolder)
+        try tempFolder.subfolder(named: "Templates").file(named: "XCTestManifests.swift").move(to: projectTestsFolder)
 
         print("Deleting the temp folder...")
         try tempFolder.delete()
@@ -120,7 +121,8 @@ public final class PackageBuilder {
         print("│       └── {PACKAGE_NAME}.swift")
         print("└── Tests")
         print("     ├── {PACKAGE_NAME}Tests")
-        print("     │   └── {PACKAGE_NAME}Tests.swift")
+        print("     │   ├── {PACKAGE_NAME}Tests.swift")
+        print("     │   └── XCTestManifests.swift")
         print("     └── LinuxMain.swift")
         print("--------------")
         print("Examples:")
